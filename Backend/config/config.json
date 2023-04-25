@@ -1,10 +1,10 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "database_development",
+    "password": "1234",
+    "database": "heydude",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mariadb"
   },
   "test": {
     "username": "root",
