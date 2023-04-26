@@ -4,6 +4,7 @@
     "password": "1234",
     "database": "heydude",
     "host": "127.0.0.1",
+    "port": "8080",
     "dialect": "mariadb"
   },
   "test": {

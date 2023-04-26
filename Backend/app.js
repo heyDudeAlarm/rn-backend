@@ -9,7 +9,7 @@ const cors = require('cors');
 dotenv.config();
 
 const { sequelize } = require('./models');
-const exp = require('constants');
+const authRouter = require('./routes/auth');
 
 const app = express();
 
@@ -24,3 +24,11 @@ sequelize.sync({ force: false })
     });
 
 app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(cors());
+
+app.use('/auth', authRouter);//로그인, 회원가입, 로그아웃
+
+app.listen(app.get('port'), () => {
+    console.log(app.get('port'), '번 포트에서 대기중');
+})
