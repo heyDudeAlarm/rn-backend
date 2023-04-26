@@ -1,5 +1,14 @@
 {
   "dependencies": {
-    "mariadb": "^3.1.1"
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express-session": "^1.17.3",
+    "http-proxy-middleware": "^2.0.6",
+    "mariadb": "^3.1.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.2.3",
+    "passport": "^0.6.0",
+    "sequelize": "^6.31.0",
+    "sequelize-cli": "^6.6.0"
   }
 }
