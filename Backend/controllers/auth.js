@@ -1,25 +1,39 @@
 //회원가입, 로그인, 로그아웃
-const pool = require('../database/config');
-const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 const User = require('../models/user');
 
+const hash = (password) => {
+    //createHash: 사용할 알고리즘(sha256, sha516)
+    //update : 해싱할 데이터
+    //digest : 인코딩 타입
+    return crypto.createHash("sha256").update(password).digest('base64').toString();
+}
 //회원가입 컨트롤러
 module.exports.join = async (req, res, next) => {
-    // const [ email, nickname, password ] = req.body;
     try {
-        const newUser = await User.findOne({ where: {email}});
-        if(newUser){ //중복된 이메일이 있다면?
-            return res.redirect('/join?error=exist'); //쿼리스트링으로 에러 표시
-        }
-        const hash = await bcrypt.hash(password, 12);
-        User.create({
-            email,
-            nickname,
-            password: hash,
-        });
-        
+        let inputEmail = "asdf@gmail.com";
+        let inputPW = "1234";
+        let inputName = "asdf";
+        await User.findAll({ where: {inputEmail}})
+            .then(row => {
+                const result = {message: 'user exist', row: row};
+                return res.json(result); 
+            }).catch(() => {
+                User.create({
+                    email: inputEmail,
+                    nickname: inputName,
+                    password: hash(inputPW),
+                }).then(row => {
+                    const result = {success: true, message: "new user insert!!", row: row};
+                    return res.json(result);
+                }).catch(err => {
+                    return res.json(err);
+                })
+            })
     } catch(err) {
         console.error('MariaDB 연결 실패');
+        const result = { success: false, message: err };
+        return res.json(result);
     }
 }
 module.exports.login = async (req, res, next) => {
@@ -31,7 +45,7 @@ module.exports.login = async (req, res, next) => {
         //이름에 "%Milo%" 들어간 행 출력
         //where: { name: {[sequelize.like]: "%Milo%"} }
         const email = await User.findAll({ where: { email: inputEmail } });
-        const pw = await User.findAll({where: {password: inputPW }});
+        const pw = await User.findAll({where: {password: hash(inputPW) }}); //task : inputPW를 hash
 
         if(email && pw){ //login Success
             const message = { success: true, message: "Login successful" };
@@ -42,6 +56,5 @@ module.exports.login = async (req, res, next) => {
         }
     } catch(err) {
         console.log(err);
-
     }
 };
