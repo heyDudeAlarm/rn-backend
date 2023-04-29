@@ -1,5 +1,6 @@
 //회원가입, 로그인, 로그아웃
 const crypto = require('crypto');
+const { and } = require('sequelize');
 const User = require('../models/user');
 
 const hash = (password) => {
@@ -15,10 +16,10 @@ module.exports.join = async (req, res, next) => {
         let inputPW = "1234";
         let inputName = "asdf";
         await User.findAll({ where: {inputEmail}})
-            .then(row => {
+            .then(row => { //findAll에서 중복된 email이 있다면
                 const result = {message: 'user exist', row: row};
                 return res.json(result); 
-            }).catch(() => {
+            }).catch(() => { //DB에서 email이 중복되지 않는다면 회원가입
                 User.create({
                     email: inputEmail,
                     nickname: inputName,
@@ -45,10 +46,10 @@ module.exports.login = async (req, res, next) => {
         //이름에 "%Milo%" 들어간 행 출력
         //where: { name: {[sequelize.like]: "%Milo%"} }
         const email = await User.findAll({ where: { email: inputEmail } });
-        const pw = await User.findAll({where: {password: hash(inputPW) }}); //task : inputPW를 hash
-
+        const pw = await User.findAll({where: {password: hash(inputPW), email: inputEmail }}); //task : inputPW를 hash
+        
         if(email && pw){ //login Success
-            const message = { success: true, message: "Login successful" };
+            const message = { success: true, message: "Login successful", data: await User.findAll({where: {email: inputEmail}}) };
             return res.json(message);
         } else {
             const err = { success: false, message: "Login ERROR"};

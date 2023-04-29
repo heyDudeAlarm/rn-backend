@@ -10,7 +10,6 @@ const database = new Sequelize(process.env.DATABASE,process.env.USER,process.env
         dialect: "mariadb"
     }
 );
-const db = {};
 database.sync();
 database.Sequelize = database;
 
