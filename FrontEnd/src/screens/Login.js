@@ -9,52 +9,23 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-// import axios from "axios";
+import axios from "axios";
+import GradientButton from "../components/Button/GradientButton";
+import GradientBorderButton from "../components/Button/GradientBorderButton";
 
 export default function Login() {
-  // const [data, setData] = useState(null);
+  // node data가져오기
+  const [data, setData] = useState(null);
   // useEffect(() => {
   //   axios
-  //     .get(`http://10.96.123.85:3000/api/data`)
+  //     .get(`http://10.96.123.85:8080/auth/login`)
   //     .then((response) => {
-  //       setData(response.data); // data state를 node.js 받아온 json으로 설정함.
+  //       setData(response.data.message); // data state를 node.js 받아온 json으로 설정함.
   //     })
   //     .catch((error) => {
   //       console.error(error);
   //     });
   // }, []);
-
-  const GradientButton = ({ onPress, colors, text, textStyle }) => {
-    return (
-      <TouchableOpacity onPress={onPress}>
-        <LinearGradient
-          colors={colors}
-          style={styles.fillButton}
-          start={{ x: 0.0, y: 1.0 }}
-          end={{ x: 1.0, y: 1.0 }}
-        >
-          <Text style={textStyle}>{text}</Text>
-        </LinearGradient>
-      </TouchableOpacity>
-    );
-  };
-
-  const GradientBorderButton = ({ onPress, colors, text, textStyle }) => {
-    return (
-      <TouchableOpacity onPress={onPress}>
-        <LinearGradient
-          start={[0, 0.5]}
-          end={[1, 0.5]}
-          colors={colors}
-          style={styles.borderButton}
-        >
-          <View style={styles.circleGradient}>
-            <Text style={styles.visit}>{text}</Text>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
-    );
-  };
 
   return (
     <View style={styles.container}>
@@ -68,7 +39,8 @@ export default function Login() {
         >
           Hey Dude!
         </Text>
-        {/* <Text>{JSON.stringify(data["message"])}</Text> */}
+        {/* 데이터 가져오기 */}
+        {/* <Text>{JSON.stringify(data)}</Text> */}
       </View>
       <View>
         {/* <form method="POST"> */}
