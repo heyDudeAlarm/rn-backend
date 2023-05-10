@@ -13,7 +13,7 @@ const authRouter = require('./routes/auth');
 
 const app = express();
 
-app.set('port', process.env.port || 8080);
+app.set('port', process.env.port);
 
 // sequelize.sync({ force: false })
 //     .then(() => {

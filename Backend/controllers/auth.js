@@ -12,17 +12,16 @@ const hash = (password) => {
 //회원가입 컨트롤러
 module.exports.join = async (req, res, next) => {
     try {
-        let inputEmail = "asdf@gmail.com";
-        let inputPW = "1234";
-        let inputName = "asdf";
-        await User.findAll({ where: {inputEmail}})
+        let [inputEmail, inputNickname, inputPW, pwChk] = req.body;
+        if(inputPW == pwChk){
+            await User.findAll({ where: {inputEmail}})
             .then(row => { //findAll에서 중복된 email이 있다면
                 const result = {message: 'user exist', row: row};
                 return res.json(result); 
             }).catch(() => { //DB에서 email이 중복되지 않는다면 회원가입
                 User.create({
                     email: inputEmail,
-                    nickname: inputName,
+                    nickname: inputNickname,
                     password: hash(inputPW),
                 }).then(row => {
                     const result = {success: true, message: "new user insert!!", row: row};
@@ -31,6 +30,8 @@ module.exports.join = async (req, res, next) => {
                     return res.json(err);
                 })
             })
+        }
+        
     } catch(err) {
         console.error('MariaDB 연결 실패');
         const result = { success: false, message: err };
@@ -40,8 +41,7 @@ module.exports.join = async (req, res, next) => {
 module.exports.login = async (req, res, next) => {
     try {
         //이제 이 부분을 React Native의 body를 가져오면 됨
-        let inputEmail = "asdf@gmail.com";
-        let inputPW = "1234";
+        const [inputEmail, inputPW] = req.body;
 
         //이름에 "%Milo%" 들어간 행 출력
         //where: { name: {[sequelize.like]: "%Milo%"} }
@@ -55,6 +55,7 @@ module.exports.login = async (req, res, next) => {
             const err = { success: false, message: "Login ERROR"};
             return res.json(err);
         }
+
     } catch(err) {
         console.log(err);
     }
