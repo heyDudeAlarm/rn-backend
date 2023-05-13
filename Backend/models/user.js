@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize');
 //import connection database
 const sequelize = require('../database/database');
+const Alarm = require('./alarm')
 
 const User = sequelize.define('users', {
-    id: {
+    uid: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -26,6 +27,9 @@ const User = sequelize.define('users', {
         createdAt: false,
         // If don't want updatedAt
         updatedAt: false,
-    });
+});
+//사용자가 여러 알람을 설정할 수 있는 1대다 관계 설정
+User.hasMany(Alarm, {foreignKey: 'uid'});
+User.hasMany(Records, {foreignKey: 'uid'});
 
 module.exports = User;
