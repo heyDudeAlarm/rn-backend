@@ -1,6 +1,6 @@
 //회원가입, 로그인, 로그아웃
 const crypto = require('crypto');
-const { and } = require('sequelize');
+const { sequelize } = require('sequelize');
 const User = require('../models/user');
 
 const hash = (password) => {
@@ -35,9 +35,11 @@ module.exports.join = async (req, res, next) => {
     } catch(err) {
         console.error('MariaDB 연결 실패');
         const result = { success: false, message: err };
+        console.log(err)
         return res.json(result);
     }
 }
+//auth 컨트롤러에서 구현한 함수를 객체로 맵핑함
 module.exports.login = async (req, res, next) => {
     try {
         //이제 이 부분을 React Native의 body를 가져오면 됨
@@ -49,8 +51,8 @@ module.exports.login = async (req, res, next) => {
         const pw = await User.findAll({where: {password: hash(inputPW), email: inputEmail }}); //task : inputPW를 hash
         
         if(email && pw){ //login Success
-            const message = { success: true, message: "Login successful", data: await User.findAll({where: {email: inputEmail}}) };
-            return res.json(message);
+            const userData = await User.findAll({where: {email: inputEmail}});
+            return JSON.stringify(userData);
         } else {
             const err = { success: false, message: "Login ERROR"};
             return res.json(err);
