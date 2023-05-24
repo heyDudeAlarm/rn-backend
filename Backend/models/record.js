@@ -25,6 +25,6 @@ const Record = sequelize.define('records',{
     }
 });
 
-Alarm.belongsTo(Alarm, {foreignKey: 'record_user'});
+// Record.belongsTo(Alarm, {foreignKey: 'record_user'});
 
 module.exports = Record;

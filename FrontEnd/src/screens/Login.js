@@ -53,7 +53,7 @@ export default function Login() {
         {/* </form> */}
       </View>
       <View>
-        <GradientButton
+    {/* <GradientButton 
           onPress={() => alert("로그인 되었습니다.")}
           style={styles.fillButton}
           colors={["#8C92FF", "#92FBE7"]}
@@ -66,7 +66,7 @@ export default function Login() {
           style2={styles.circleGradient}
           colors={["#8C92FF", "#92FBE7"]}
           text="Sign Up"
-        />
+        />  */}
       </View>
     </View>
   );

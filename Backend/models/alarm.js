@@ -36,7 +36,7 @@ const Alarm = sequelize.define('alarms', {
     },
 });
 
-Alarm.belongsTo(User, {foreignKey: 'uid'});
-Alarm.hasMany(Record, {foreignKey: 'record_user'});
+// Alarm.belongsTo(User, {foreignKey: 'uid'});
+// Alarm.hasMany(Record, {foreignKey: 'record_user'});
 
 module.exports = Alarm;
