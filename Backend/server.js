@@ -8,7 +8,7 @@ const cors = require('cors');
 
 dotenv.config();
 
-const { sequelize } = require('./database/database');
+// const { sequelize } = require('./database/database');
 const authRouter = require('./routes/auth');
 
 const app = express();
