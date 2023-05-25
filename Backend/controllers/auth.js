@@ -44,25 +44,20 @@ const hash = (password) => {
 module.exports.login = async (req, res, next) => {
     try {
         //이제 이 부분을 React Native의 body를 가져오면 됨
-        // const [inputEmail, inputPW] = req.body;
-        //이름에 "%Milo%" 들어간 행 출력
-        //where: { name: {[sequelize.like]: "%Milo%"} }
-        // const email = await User.findAll({ where: { email: 'asdf@gmail.com' } });
-        // const pw = await User.findAll({where: {password: hash('asdf'), email: 'asdf@gmail.com' }}); //task : inputPW를 hash
-        let conn;
-        const query = "SELECT * FROM users WHERE email = 'asdf@gmail.com'";
-        conn = await mariaDB.getConnection();
-        const row = await conn.query(query);
-        return res.json(row);
-        // if(email && pw){ //login Success
-        //     const userData = await User.findAll({where: {email: email}});
-        //     return JSON.stringify(userData);
-        // } else {
-        //     const err = { success: false, message: "Login ERROR"};
-        //     return res.json(err);
-        // }
+        const [inputEmail, inputPW] = req.body;
 
+        const query = `SELECT * FROM users WHERE email = ${inputEmail}`;
+        let conn = await mariaDB.getConnection();
+        await conn.query(query)
+            .then(row => {
+                let hashPW = hash(inputPW); //비번 asdf
+                if(row[0].password == hashPW){
+                    return res.json(row[0]);
+                }
+            }).catch(() => {
+                return res.json({fail: 'i dont...know ㅠㅠ'});
+            })
     } catch(err) {
-        console.log('로그인 컨트롤러 실패 : ',err);
+        console.log(`로그인 컨트롤러 에러 : ${err}`);
     }
 };

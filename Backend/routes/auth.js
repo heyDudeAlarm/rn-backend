@@ -4,6 +4,6 @@ const router = express.Router();
 const auth = require('../controllers/auth');
 
 // router.post('/join', auth.join);
-router.get("/login", auth.login);
+router.post("/login", auth.login);
 
 module.exports = router;
