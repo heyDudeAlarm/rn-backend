@@ -2,20 +2,19 @@ import { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   Button,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
   View,
-  TouchableOpacity,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
-import GradientButton from "../components/Button/GradientButton";
-import GradientBorderButton from "../components/Button/GradientBorderButton";
+import GradientButton from "../../components/Button/GradientButton";
+import GradientBorderButton from "../../components/Button/GradientBorderButton";
 
-export default function Login() {
+export default function Login({ navigation }) {
   // node data가져오기
-  const [data, setData] = useState(null);
+  const [data, setData] = useState('');
   // useEffect(() => {
   //   axios
   //     .get(`http://10.96.123.85:8080/auth/login`)
@@ -42,31 +41,37 @@ export default function Login() {
         {/* 데이터 가져오기 */}
         {/* <Text>{JSON.stringify(data)}</Text> */}
       </View>
-      <View>
+      <View style={styles.inputs}>
         {/* <form method="POST"> */}
-        <TextInput style={styles.InputStyle} placeholder="email" name="email" />
+        <TextInput
+          style={styles.InputStyle}
+          placeholder="email"
+          name="email"
+          keyboardType="twitter"
+        />
         <TextInput
           style={styles.InputStyle}
           placeholder="password"
           name="password"
+          secureTextEntry
         />
         {/* </form> */}
       </View>
-      <View>
-    {/* <GradientButton 
-          onPress={() => alert("로그인 되었습니다.")}
+      <View style={styles.buttons}>
+        <GradientButton
+          onPress={() => navigation.navigate("TabNavigation")} //tabnavigation으로 이동
           style={styles.fillButton}
           colors={["#8C92FF", "#92FBE7"]}
           text="Login"
           textStyle={styles.buttonText}
         />
         <GradientBorderButton
-          onPress={() => alert("Button Pressed")}
+          onPress={() => navigation.navigate("Signup")}
           style={styles.visit}
           style2={styles.circleGradient}
           colors={["#8C92FF", "#92FBE7"]}
           text="Sign Up"
-        />  */}
+        />
       </View>
     </View>
   );
@@ -82,8 +87,15 @@ const styles = StyleSheet.create({
     rowGap: 40,
   },
   title: {
+    flex: 0.13,
     color: "pink",
     fontSize: 40,
+  },
+  inputs: {
+    flex: 0.25,
+  },
+  buttons: {
+    flex: 0.2,
   },
   InputStyle: {
     backgroundColor: "#EDEFF2",
@@ -93,25 +105,6 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 10,
   },
-  fillButton: {
-    width: 300,
-    height: 58,
-    textAlign: "center",
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  borderButton: {
-    width: 300,
-    height: 58,
-    textAlign: "center",
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 15,
-    margin: 1,
-    backgroundColor: "white",
-  },
   buttonText: {
     textAlign: "center",
     color: "#ffffff",
@@ -119,18 +112,6 @@ const styles = StyleSheet.create({
     marginLeft: 1,
     marginRight: 1,
     width: 198,
-    fontSize: 16,
-  },
-  circleGradient: {
-    backgroundColor: "white",
-    borderRadius: 5,
-  },
-  visit: {
-    margin: 14.5,
-    paddingHorizontal: 104,
-    textAlign: "center",
-    backgroundColor: "white",
-    color: "#4C64FF",
     fontSize: 16,
   },
 });

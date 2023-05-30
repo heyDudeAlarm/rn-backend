@@ -4,69 +4,30 @@ import {
   Button,
   StyleSheet,
   Text,
-  TextInput,
   View,
-  TouchableOpacity,
-  ScrollView,
+  Dimensions,
 } from "react-native";
 import MorningCallListView from "../components/MorningCallListView";
+
 const getData = () => {
   return [
     {
       key: 1,
-      title: "Albert Einstein",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      image_url:
-        "https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjVfMjAy/MDAxNjQzMTAyOTk2NjE0.gw_H_jjBM64svaftcnheR6-mHHlmGOyrr6htAuxPETsg.8JJSQNEA5HX2WmrshjZ-VjmJWqhmgE40Qm5csIud9VUg.JPEG.minziminzi128/IMG_7374.JPG?type=w800",
+      time: "06:30",
+      label: "졸업식 날",
+      activate: true,
     },
     {
       key: 2,
-      title: "Isaac newton",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      image_url:
-        "http://3.bp.blogspot.com/-jd5x3rFRLJc/VngrSWSHcjI/AAAAAAAAGJ4/ORPqZNDpQoY/s1600/Profile%2Bcircle.png",
+      time: "06:30",
+      label: "졸업식 날",
+      activate: true,
     },
     {
-      key: 1,
-      title: "Albert Einstein",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      image_url:
-        "https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjVfMjAy/MDAxNjQzMTAyOTk2NjE0.gw_H_jjBM64svaftcnheR6-mHHlmGOyrr6htAuxPETsg.8JJSQNEA5HX2WmrshjZ-VjmJWqhmgE40Qm5csIud9VUg.JPEG.minziminzi128/IMG_7374.JPG?type=w800",
-    },
-    {
-      key: 2,
-      title: "Isaac newton",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      image_url:
-        "http://3.bp.blogspot.com/-jd5x3rFRLJc/VngrSWSHcjI/AAAAAAAAGJ4/ORPqZNDpQoY/s1600/Profile%2Bcircle.png",
-    },
-    {
-      key: 1,
-      title: "Albert Einstein",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      image_url:
-        "https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjVfMjAy/MDAxNjQzMTAyOTk2NjE0.gw_H_jjBM64svaftcnheR6-mHHlmGOyrr6htAuxPETsg.8JJSQNEA5HX2WmrshjZ-VjmJWqhmgE40Qm5csIud9VUg.JPEG.minziminzi128/IMG_7374.JPG?type=w800",
-    },
-    {
-      key: 2,
-      title: "Isaac newton",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      image_url:
-        "http://3.bp.blogspot.com/-jd5x3rFRLJc/VngrSWSHcjI/AAAAAAAAGJ4/ORPqZNDpQoY/s1600/Profile%2Bcircle.png",
-    },
-    {
-      key: 1,
-      title: "Albert Einstein",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      image_url:
-        "https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjVfMjAy/MDAxNjQzMTAyOTk2NjE0.gw_H_jjBM64svaftcnheR6-mHHlmGOyrr6htAuxPETsg.8JJSQNEA5HX2WmrshjZ-VjmJWqhmgE40Qm5csIud9VUg.JPEG.minziminzi128/IMG_7374.JPG?type=w800",
+      key: 3,
+      time: "06:30",
+      label: "진이 생일날!",
+      activate: true,
     },
   ];
 };
@@ -77,12 +38,12 @@ export default function MorningCall({ navigation }) {
         <Text style={styles.title}>알람 목록</Text>
       </View>
       <View style={styles.alarms}>
-        <ScrollView
+        {/* <ScrollView
           showsHorizontalScrollIndicator={false} // 밑에 스크롤 숨기기
           contentContainerStyle={styles.weather}
-        >
-          <MorningCallListView itemList={getData()} />
-        </ScrollView>
+        > */}
+        <MorningCallListView itemList={getData()} />
+        {/* </ScrollView> */}
       </View>
     </View>
   );
@@ -92,19 +53,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    marginLeft: 20,
+    paddingLeft: 18,
+    backgroundColor: "#fff",
     // marginRight: 25,
   },
   header: {
     flex: 1.5,
     justifyContent: "flex-end",
-    padding: 15,
+    padding: 12,
+    marginBottom: 5,
   },
   title: {
     fontSize: 25,
     fontWeight: "bold",
   },
   alarms: {
+    flex: 9,
     justifyContent: "center",
     alignContent: "center",
   },

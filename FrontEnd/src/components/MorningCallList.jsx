@@ -1,25 +1,24 @@
 import React from "react";
 import { useState } from "react";
-import { View, Text, StyleSheet, Switch } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import ToggleSwitch from "rn-toggle-switch";
 
-const CustomRow = ({ title, description, image_url }) => {
+const windowWidth = Dimensions.get("window").width;
+const CustomRow = ({ time, label, activate }) => {
   // switch toggle state
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [isEnabled, setIsEnabled] = useState({ activate });
+  const toggleSwitch = () => setIsEnabled((activate) => !activate);
 
   return (
     <View style={styles.container}>
       <View style={styles.container_text}>
-        <Text style={styles.title}>06:30</Text>
-        <Text style={styles.label}>heydude 프로젝트 알림</Text>
+        <Text style={styles.title}>{time}</Text>
+        <Text style={styles.label}>{label}</Text>
       </View>
-      {/* <ToggleSwitch
+      <ToggleSwitch
         text={{
           on: "",
           off: "",
-          activeTextColor: "white",
-          inactiveTextColor: "#B7B8BA",
         }}
         color={{
           indicator: "white",
@@ -28,32 +27,33 @@ const CustomRow = ({ title, description, image_url }) => {
           activeBorder: "transparent",
           inactiveBorder: "transparent",
         }}
-        active={true}
+        active={activate}
         disabled={false}
-        width={50}
-        radius={25}
+        width={15}
+        radius={12}
         onValueChange={toggleSwitch}
-      /> */}
-      <Switch
+      />
+
+      {/* <Switch
         trackColor={{ false: "#AFAFAF", true: "#6d61ff" }}
         thumbColor={isEnabled ? "#fff" : "#fff"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
         value={isEnabled}
-      />
+      /> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: 325,
     flex: 1,
+    width: windowWidth - 48,
+    marginHorizontal: 12,
     height: 85,
     flexDirection: "row",
+    alignItems: "center",
     padding: 10,
-    marginLeft: 16,
-    marginRight: 16,
     marginTop: 8,
     marginBottom: 8,
     borderRadius: 5,
