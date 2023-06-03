@@ -43,7 +43,7 @@ module.exports.login = async (req, res, next) => {
         //이제 이 부분을 React Native의 body를 가져오면 됨
         const inputEmail = req.body.email;
         const inputPW = req.body.password;
-
+        let conn = await mariaDB.getConnection();
         let sql = `SELECT * FROM users WHERE email = '${inputEmail}' AND password = '${hash(inputPW)}'`;
         await conn.query(sql)
             .then(row => {
