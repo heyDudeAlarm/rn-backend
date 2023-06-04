@@ -1,42 +1,15 @@
-// const sequelize = require('../database/database');
-// const Sequelize = require('sequelize');
-// const User = require('./user');
-// const Record = require('./record');
+const connection = require('../database/config');
+const Alarm = {}; //모델 생성
 
-// const Alarm = sequelize.define('alarms', {
-//     uid: {
-//         type: Sequelize.INTEGER,
-//         // references: {
-//         //     model: User,
-//         //     key: 'uid'
-//         // }
-//     },
-//     label: {
-//         type: Sequelize.STRING,
-//         allowNull: true,
-//     },
-//     time: {
-//         type: Sequelize.TIME,
-//         allowNull: false,
-//     },
-//     activate: {
-//         type: Sequelize.BOOLEAN,
-//         allowNull: true,
-//         defaultValue: true,
-//     },
-//     snooze: {
-//         type: Sequelize.BOOLEAN,
-//         allowNull: false,
-//         defaultValue: false,
-//     },
-//     record_user: {
-//         type: Sequelize.STRING,
-//         allowNull: false,
-        
-//     },
-// });
+Alarm.findById = (userId) => {
+    return new Promise((resolve, reject) => {
+        connection.query(`SELECT * FROM alarms WHERE user_id = ${userId}`)
+            .then(row => {
+                resolve(row[0])
+            }).catch(err => {
+                reject(err)
+            })
+    });
+};
 
-// // Alarm.belongsTo(User, {foreignKey: 'uid'});
-// // Alarm.hasMany(Record, {foreignKey: 'record_user'});
-
-// module.exports = Alarm;
+module.exports = Alarm;
