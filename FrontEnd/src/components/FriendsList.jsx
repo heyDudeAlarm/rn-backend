@@ -11,7 +11,7 @@ import SendBtn from "./Button/SendBtn";
 
 const windowWidth = Dimensions.get("window").width;
 
-const RecordList = ({ name, message, profile_img }) => (
+const FriendsList = ({ name, message, profile_img }) => (
   <View style={styles.container}>
     <Image src={profile_img} style={styles.photo} />
     <View style={styles.container_text}>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: windowWidth - 46,
     marginHorizontal: 23,
-    height: 100,
+    height: 80,
     padding: 20,
     borderRadius: 10,
     flexDirection: "row",
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   title: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
     color: "#000",
   },
@@ -51,15 +51,15 @@ const styles = StyleSheet.create({
   },
   description: {
     width: 150,
-    fontSize: 11,
+    fontSize: 12,
     fontStyle: "italic",
     color: "#8D8D8D",
   },
   photo: {
-    height: 50,
-    width: 50,
+    height: 35,
+    width: 35,
     borderRadius: 50,
   },
 });
 
-export default RecordList;
+export default FriendsList;

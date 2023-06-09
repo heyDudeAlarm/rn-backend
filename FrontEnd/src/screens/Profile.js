@@ -5,12 +5,12 @@ import { Ionicons } from '@expo/vector-icons';
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function MyPage({ navigation }) {
+function MyPage({ navigation }, props) {
   return (
     <View style={styles.container}>
       <ImageBackground
       source={require('../../assets/mypageBack.png')} resizeMode="cover" style={styles.bgImage}>
-        <Ionicons style={styles.settings} name="settings-outline" size={24} color="white" />
+      <Ionicons style={styles.settings} name="settings-outline" size={24} color="white" />
         <View style={styles.contents}>
           <Image style={styles.profile} />
           <Text style={styles.username}>김하진</Text>
@@ -39,7 +39,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   settings: {
+    justifyContent: "flex-end",
     alignSelf: "flex-end",
+    marginTop: 15,
     marginRight: 15,
   },
   profile: {
@@ -49,7 +51,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   contents: {
-    marginTop: 100,
+    flex: 1,
+    marginTop: 30,
     alignItems: "center",
     justifyContent: "center",
   },

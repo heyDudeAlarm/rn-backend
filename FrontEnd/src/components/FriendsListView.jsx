@@ -1,6 +1,6 @@
 import React from "react";
 import { View, FlatList, StyleSheet, Text } from "react-native";
-import CustomRow from "./RecordList";
+import CustomRow from "./FriendsList";
 
 const styles = StyleSheet.create({
   container: {

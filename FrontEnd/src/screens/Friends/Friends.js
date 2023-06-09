@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, TextInput, View, Image } from "react-native";
-import FriendsList from "../components/FriendsListView";
+import FriendsList from "../../components/FriendsListView";
 
 export default function Friends({ navigation }) {
   const getData = () => {
@@ -10,7 +10,7 @@ export default function Friends({ navigation }) {
       {
         key: 1,
         name: "홍길동",
-        message: "나 이번에는 진짜 일어나서 프로젝트 한다11!!!!! 화이팅",
+        message: "김씨요.",
         profile_img: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
       },
       {
@@ -22,7 +22,7 @@ export default function Friends({ navigation }) {
       {
         key: 3,
         name: "하진",
-        message: "오늘은 진짜 프로젝트 시작한다",
+        message: "김씨요.",
         profile_img: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
       },
       {

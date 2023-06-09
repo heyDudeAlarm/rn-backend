@@ -29,8 +29,8 @@ const CustomRow = ({ time, label, activate }) => {
         }}
         active={activate}
         disabled={false}
-        width={15}
-        radius={12}
+        width={17}
+        radius={8}
         onValueChange={toggleSwitch}
       />
 
