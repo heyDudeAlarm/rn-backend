@@ -15,7 +15,7 @@ const client = new S3Client({
 
 const upload = multer({storage: multer.memoryStorage()})
 
-router.post('/upload', upload.single('file'), async (req, res) => {
+router.post('/audio', upload.single('file'), async (req, res) => {
     const file = req.file;
     //녹
     const userID = req.body.userID;
@@ -25,7 +25,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
         client: client,
         params: {
             Bucket: process.env.AWS_BUCKET,
-            Key: `audio/audio.mp3`,
+            Key: `audio/audio_${userID}.mp3`,
             Body: file.buffer,
             ContentType: file.mimetype,
         }
@@ -39,13 +39,12 @@ router.post('/upload', upload.single('file'), async (req, res) => {
             console.log(err);
             // res.json({fail: err});
         })
+});
 
-})
 
-
-router.get('/', (req, res) => {
-    res.sendFile(__dirname +'/test.html');
-})
+// router.get('/', (req, res) => {
+//     res.sendFile(__dirname +'/test.html');
+// })
 
 router.get('/download', (req, res) => {
     // const response = await client.send(new GetObjectCommand({
