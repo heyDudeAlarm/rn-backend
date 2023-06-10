@@ -1,5 +1,5 @@
 const mariaDB = require('../database/config');
-const Alarm = require('../models/alarm');
+const Alarm = require('../models/Alarm');
 
 module.exports.showAlarm = async (req, res) => {
     try {
