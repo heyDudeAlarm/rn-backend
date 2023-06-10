@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, View, TouchableOpacity } from "react-native";
+import { Image, View, TouchableOpacity, ToastAndroid } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
 import {
@@ -9,7 +9,7 @@ import {
 import Alarm from "../screens/Alarm";
 import Record from "./Record/RecordListScreen";
 import Profile from "../screens/Profile";
-import Friends from "../screens/Friends";
+import Friends from "./Friends/Friends";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNavigationContainerRef();
@@ -22,7 +22,9 @@ const IconOcations = ({ name, size, color }) => {
   return <Octicons name={name} size={size} color={color} />;
 };
 
-const TabNavigation = ({ navigation }) => {
+const TabNavigation = ({ navigation, route }) => {
+  // const userdata = JSON.stringify(route.params.userdata);
+  // ToastAndroid.show(userdata, ToastAndroid.SHORT)
   return (
     <Tab.Navigator
       initialRouteName="Alarm"
@@ -54,7 +56,7 @@ const TabNavigation = ({ navigation }) => {
               // navigator로 이동
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("Record");
+                  navigation.navigate("AddAlarm");
                 }}
               >
                 <Image
@@ -75,10 +77,11 @@ const TabNavigation = ({ navigation }) => {
         }}
       />
       <Tab.Screen
-        name="Home"
+        name="Profile"
         component={Profile}
         options={{
           tabBarIcon: (props) => IconOcations({ ...props, name: "home" }),
+          headerShown: false,
         }}
       />
     </Tab.Navigator>

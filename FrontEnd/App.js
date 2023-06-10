@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { Button } from "react-native";
 import { StyleSheet, Dimensions } from "react-native";
+import Toast from 'react-native-toast-message';
 import Login from "./src/screens/Login/Login";
 import Signup from "./src/screens/Login/Signup";
 import TabNavigation from "./src/screens/Tab";
@@ -12,7 +13,9 @@ import Record from "./src/screens/Record/Record";
 import RecordList from "./src/components/RecordList";
 import AddAlarm from "./src/screens/AddAlarm";
 import Profile from "./src/screens/Profile";
+import AskRecord from "./src/screens/Friends/AskRecord";
 import SendBtn from "./src/components/Button/SendBtn";
+import Notification from "./src/screens/Notification"
 
 const SCREEN_WIDTH = Dimensions.get("window").width; // 스크린가로사이즈를 가져옴
 const Stack = createStackNavigator();
@@ -20,23 +23,28 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
+      <Toast 
+        position='bottom'
+        bottomOffset={20}/>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Record"
         options={{ headerShown: false }}
-        // screenOptions={{ headerTitleAlign: "center" }}
+        screenOptions={{ headerTitleAlign: "center" }}
       > 
         <Stack.Screen
           name="TabNavigation"
           component={TabNavigation}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Login" component={Login} /> 
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/> 
         <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Record" component={Record} />
+        <Stack.Screen name="Record" options={{title: '모닝콜 녹음'}} component={Record}/>
         <Stack.Screen name="RecordListScreen" component={RecordListScreen} />
         <Stack.Screen name="RecordList" component={RecordList} />
         <Stack.Screen name="AddAlarm" component={AddAlarm} />
         <Stack.Screen name="Profile" component={Profile} /> 
+        <Stack.Screen name="AskRecord" options={{title: '모닝콜 요청'}} component={AskRecord} /> 
+        <Stack.Screen name="Notification" component={Notification} /> 
         <Stack.Screen name="SendBtn" component={SendBtn} /> 
       </Stack.Navigator>
     </NavigationContainer>

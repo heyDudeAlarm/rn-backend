@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import MorningCallListView from "../components/MorningCallListView";
 
-const getData = () => {
-  return [
+
+export default function MorningCall({ navigation }) {
+  const [data, setData] = useState([
     {
       key: 1,
       time: "06:30",
@@ -25,13 +26,11 @@ const getData = () => {
     },
     {
       key: 3,
-      time: "06:30",
+      time: "06:17",
       label: "진이 생일날!",
       activate: true,
-    },
-  ];
-};
-export default function MorningCall({ navigation }) {
+    }]);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -42,7 +41,7 @@ export default function MorningCall({ navigation }) {
           showsHorizontalScrollIndicator={false} // 밑에 스크롤 숨기기
           contentContainerStyle={styles.weather}
         > */}
-        <MorningCallListView itemList={getData()} />
+        <MorningCallListView itemList={data} />
         {/* </ScrollView> */}
       </View>
     </View>
