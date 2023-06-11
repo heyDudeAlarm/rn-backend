@@ -42,9 +42,9 @@ router.post('/audio', upload.single('file'), async (req, res) => {
 });
 
 
-// router.get('/', (req, res) => {
-//     res.sendFile(__dirname +'/test.html');
-// })
+router.get('/', (req, res) => {
+    res.sendFile(__dirname +'/test.html');
+})
 
 router.get('/download', (req, res) => {
     // const response = await client.send(new GetObjectCommand({
