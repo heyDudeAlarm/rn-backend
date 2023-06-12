@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
 const { Upload } = require('@aws-sdk/lib-storage');
+const Audio = require('../models/Audio');
 // API KEY 보관법
 const client = new S3Client({
     region: process.env.AWS_REGION,
@@ -15,11 +16,16 @@ const client = new S3Client({
 
 const upload = multer({storage: multer.memoryStorage()})
 
-router.post('/audio', upload.single('file'), async (req, res) => {
+router.post('/audio/:id', upload.single('file'), async (req, res) => {
+    //녹음 파일
     const file = req.file;
-    //녹
-    const userID = req.body.userID;
+    //녹음 파일을 받는 유저
+    const receivedUser = req.body.userID;
+    //녹음 메세지
     const message = req.body.message;
+    //녹음을 한 유저
+    const sendUser = req.params.id;
+
     //AWS s3 버킷에 파일 업로드
     const upload = new Upload({
         client: client,
@@ -34,22 +40,12 @@ router.post('/audio', upload.single('file'), async (req, res) => {
     upload.done()
         .then(res => {
             console.log(res);
-
+            
+            res.json({success: "성공"})
         }).catch(err => {
-            console.log(err);
-            // res.json({fail: err});
+            // console.log(err);
+            res.json({fail: err});
         })
 });
 
-
-// router.get('/', (req, res) => {
-//     res.sendFile(__dirname +'/test.html');
-// })
-
-router.get('/download', (req, res) => {
-    // const response = await client.send(new GetObjectCommand({
-    //     Bucket: 'heydudebucket',
-    //     Key: req.query.filename
-    // }))
-})
 module.exports = router;
