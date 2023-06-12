@@ -20,7 +20,7 @@ router.post('/audio/:id', upload.single('file'), async (req, res) => {
     //녹음 파일
     const file = req.file;
     //녹음 파일을 받는 유저
-    const receivedUser = req.body.userID;
+    // const receivedUser = req.body.userID;
     //녹음 메세지
     const message = req.body.message;
     //녹음을 한 유저
@@ -31,7 +31,7 @@ router.post('/audio/:id', upload.single('file'), async (req, res) => {
         client: client,
         params: {
             Bucket: process.env.AWS_BUCKET,
-            Key: `audio/audio_${userID}.mp3`,
+            Key: `audio/audio_${sendUser}.mp3`,
             Body: file.buffer,
             ContentType: file.mimetype,
         }

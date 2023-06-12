@@ -7,9 +7,10 @@ import {
   createNavigationContainerRef,
 } from "@react-navigation/native";
 import Alarm from "../screens/Alarm";
-import Record from "./Record/RecordListScreen";
+import RecordListScreen from "./Record/RecordListScreen";
 import Profile from "../screens/Profile";
 import Friends from "./Friends/Friends";
+import AddAlarm from "./AddAlarm";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNavigationContainerRef();
@@ -40,7 +41,8 @@ const TabNavigation = ({ navigation, route }) => {
       />
       <Tab.Screen
         name="Record"
-        component={Record}
+        // component={RecordListScreen}
+        children={()=><RecordListScreen toRecord={()=>{navigation.navigate("Record")}}/>}
         options={{
           tabBarIcon: (props) =>
             TabIcon({ ...props, name: "microphone-outline" }),
@@ -49,7 +51,7 @@ const TabNavigation = ({ navigation, route }) => {
       />
       <Tab.Screen
         name="AddAlarm"
-        component={Record}
+        component={AddAlarm}
         options={{
           tabBarIcon: () => {
             return (
@@ -70,7 +72,7 @@ const TabNavigation = ({ navigation, route }) => {
       />
       <Tab.Screen
         name="Friends"
-        component={Friends}
+        children={()=><Friends toAskrecord={()=>{navigation.navigate("AskRecord")}}/>}
         options={{
           tabBarIcon: (props) => IconOcations({ ...props, name: "person-add" }),
           headerShown: false,

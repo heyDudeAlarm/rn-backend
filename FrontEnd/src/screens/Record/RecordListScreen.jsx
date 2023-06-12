@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, TextInput, View, Image } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity } from "react-native";
 import RecordList from "../../components/RecordListView";
+import CustomRow from "../../components/RecordList"
 
-export default function RecordListScreen({ navigation }) {
+export default function RecordListScreen(props) {
   const getData = () => {
     // 서버에서 json형태로 받아옴
     return [
@@ -33,6 +34,18 @@ export default function RecordListScreen({ navigation }) {
       },
     ];
   };
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => navigation.navigate("Record")}>
+      <CustomRow
+          name={item.name}
+          message={item.message}
+          profile_img={item.profile_img}
+          onPress={props.toRecord}
+      />
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -45,10 +58,7 @@ export default function RecordListScreen({ navigation }) {
       <View style={styles.alarms}>
         <RecordList
           itemList={getData()}
-          press={() => {
-            console.log('record 이동')
-            navigation.navigate("Record");
-          }}
+          renderItem={renderItem}
         />
       </View>
     </View>

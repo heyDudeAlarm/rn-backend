@@ -23,7 +23,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.fastcat2.heydude"
+      "package": "com.fastcat2.heydude",
+      "permissions": [
+        "RECORD_AUDIO",
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -11,14 +11,14 @@ import SendBtn from "./Button/SendBtn";
 
 const windowWidth = Dimensions.get("window").width;
 
-const RecordList = ({ name, message, profile_img }, props) => (
+const RecordList = (props) => (
   <View style={styles.container}>
-    <Image src={profile_img} style={styles.photo} />
+    <Image src={props.profile_img} style={styles.photo} />
     <View style={styles.container_text}>
-      <Text style={styles.title}>{name}</Text>
-      <Text style={styles.description}>{message}</Text>
+      <Text style={styles.title}>{props.name}</Text>
+      <Text style={styles.description}>{props.message}</Text>
     </View>
-    <SendBtn press={props.press} />
+    <SendBtn onPress={props.onPress} />
   </View>
 );
 

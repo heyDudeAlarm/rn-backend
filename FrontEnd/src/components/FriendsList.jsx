@@ -3,22 +3,35 @@ import {
   View,
   Text,
   StyleSheet,
-  Switch,
   Image,
   Dimensions,
+  TouchableOpacity
 } from "react-native";
 import SendBtn from "./Button/SendBtn";
 
 const windowWidth = Dimensions.get("window").width;
 
-const FriendsList = ({ name, message, profile_img }) => (
+const FriendsList = (props) => (
   <View style={styles.container}>
-    <Image src={profile_img} style={styles.photo} />
+    <Image src={props.profile_img} style={styles.photo} />
     <View style={styles.container_text}>
-      <Text style={styles.title}>{name}</Text>
-      <Text style={styles.description}>{message}</Text>
+      <Text style={styles.title}>{props.name}</Text>
+      <Text style={styles.description}>{props.message}</Text>
     </View>
-    <SendBtn />
+    <TouchableOpacity
+        onPress={props.onPress}
+        style={styles.typeBtn}>
+        <Image
+          style={{
+            width: 30,
+            height: 30,
+            borderRadius: 100,
+            overflow: 'hidden',
+            borderColor: 'blue',
+          }}
+          source={require('../../assets/icons/friendList/alarmReqBtn.png')}
+        />
+</TouchableOpacity>
   </View>
 );
 
@@ -27,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: windowWidth - 46,
     marginHorizontal: 23,
-    height: 80,
+    height: 70,
     padding: 20,
     borderRadius: 10,
     flexDirection: "row",
@@ -51,7 +64,7 @@ const styles = StyleSheet.create({
   },
   description: {
     width: 150,
-    fontSize: 12,
+    fontSize: 10,
     fontStyle: "italic",
     color: "#8D8D8D",
   },
