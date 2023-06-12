@@ -15,6 +15,18 @@ const client = new S3Client({
 });
 
 const upload = multer({storage: multer.memoryStorage()})
+const SaveAudioData = () => {
+    let uploadDate = new Date().toLocaleString();
+            
+            const data = {
+                send_user: sendUser,
+                audio_url: res,
+                audio_msg: message,
+                audio_date: uploadDate,
+                received_user: receivedUser,
+            }
+            Audio.saveAudio()
+}
 
 router.post('/audio/:id', upload.single('file'), async (req, res) => {
     //녹음 파일
@@ -47,5 +59,10 @@ router.post('/audio/:id', upload.single('file'), async (req, res) => {
             res.json({fail: err});
         })
 });
+
+router.get('/', (req, res) => {
+    res.sendFile(__dirname + '/test.html');
+})
+
 
 module.exports = router;
