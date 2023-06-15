@@ -11,6 +11,7 @@ dotenv.config();
 const authRouter = require('./routes/auth');
 const alarmRouter = require('./routes/alarm');
 const uploadRouter = require('./routes/upload');
+const friendRouter = require('./routes/friend');
 
 app.set('port', process.env.port);
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use('/auth', authRouter);//로그인, 회원가입, 로그아웃
 app.use('/alarm', alarmRouter);
 app.use('/upload', uploadRouter);
+app.use('/friend', friendRouter);
 
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기중');
