@@ -53,9 +53,8 @@ router.post("/audio/:id", upload.single("file"), async (req, res) => {
           received_user: receivedUser,
         };
         console.log(data);
-        Audio.insertData(data);
-        res.json({ success: "성공" });
-
+        Audio.insertData(data); //DB에 알람정보 저장
+        res.status(200).json(data);
       })
       .catch((err) => {
         res.json({ fail: err });
