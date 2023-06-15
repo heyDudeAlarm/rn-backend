@@ -5,7 +5,7 @@ import * as FileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
 import axios from "axios";
 
-export default function Record(){
+export default function Record({navigation}){
   const [recording, setRecording] = useState(null);
   const [sound, setSound] = useState(null);
   const [uri, setUri] = useState(null);
@@ -32,22 +32,25 @@ async function uploadAudio(){
   });
   
   // JSON 데이터를 FormData에 추가
-  formData.append("userID", "sunjo");
+  // formData.append("userID", "sunjo");
+  const userID = 2;
   formData.append("message", "여기 보내마.");
 
   axios({
     method: "post",
-    url: "http://10.0.2.2:8082/upload/audio",
-    // url: "http://127.0.0.1:8082/upload/audio",
+    // url: `http://10.0.2.2:8082/upload/audio/${userID}`,
+    // url: `http://127.0.0.1:8082/upload/audio/${userID}`,
+    url: `http://10.96.123.85:8082/upload/audio/${userID}`,
     mode: "cors",
     headers: {
       'Content-Type': 'multipart/form-data',
+      // 'Accept': 'application/json'
     },
     data: formData,
   })
   .then(res => {
     ToastAndroid.show("오디오 파일 업로드 성공", ToastAndroid.SHORT)
-    alert('성공')
+    console.log("오디오 업로드 성공");
   }).catch(err => {
     ToastAndroid.show("실패하였습니다", ToastAndroid.SHORT)
     console.log(err);

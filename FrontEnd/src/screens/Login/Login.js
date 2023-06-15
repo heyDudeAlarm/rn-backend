@@ -7,8 +7,9 @@ import {
   Text,
   TextInput,
   View,
-  ToastAndroid
+  ToastAndroid,
 } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from "react-native-toast-message"
 import axios from "axios";
 import GradientButton from "../../components/Button/GradientButton";
@@ -19,7 +20,7 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  const LoginEvent = () => {
+const LoginEvent = () => {
     const formdata = {
       email : email.trim(),
       password : password
@@ -39,6 +40,10 @@ export default function Login({ navigation }) {
           ToastAndroid.show("로그인에 실패하였습니다.", ToastAndroid.SHORT)
         }else{ //로그인 성공
           ToastAndroid.show("로그인 성공!", ToastAndroid.SHORT)
+          AsyncStorage.setItem('session', email); // session에 저장
+          AsyncStorage.getItem('nickname', (err, result) => {
+            console.log(result); // User1 출력
+          });
           navigation.replace("TabNavigation", {"userdata" : res["data"]}); //tabnavigation으로 이동
         }
       })

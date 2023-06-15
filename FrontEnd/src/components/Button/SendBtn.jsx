@@ -1,27 +1,29 @@
 import { View, Text, StyleSheet, Switch, TouchableOpacity, Alert } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-const goAlert = (press) => {
-  Alert.alert(
-    "",
-    "정말 홍길동님에게 보내시겠습니까?",
-    [
-      {
-        text : "아니요",
-        onPress: () => console.log("아니요"),
-        style: "cancel"
-      },
-      {
-        text : "모닝콜 녹음하기",
-        onPress: press,
-      }
-    ],
-    {cancelable: false}
-  );
-}
+
 const SendBtn = (props) => {
+  const goAlert = () => {
+    Alert.alert(
+      "",
+      "정말 홍길동님에게 보내시겠습니까?",
+      [
+        {
+          text : "아니요",
+          onPress: () => console.log("아니요"),
+          style: "cancel"
+        },
+        {
+          text : "모닝콜 녹음하기",
+          onPress: props.press
+        }
+      ],
+      {cancelable: false}
+    );
+  }
+
   return (
-    <TouchableOpacity style={styles.container} onPress={()=>{goAlert(props.press)}}>
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <Text style={styles.text}>SEND</Text>
     </TouchableOpacity>
   );

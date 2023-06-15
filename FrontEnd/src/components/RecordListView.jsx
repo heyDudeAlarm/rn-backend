@@ -8,19 +8,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const RecordListView = ({ itemList }, props) => (
+const RecordListView = (props) => (
   <View style={styles.container}>
     <FlatList
       showsVerticalScrollIndicator={false}
-      data={itemList}
-      renderItem={({ item }) => (
-        <CustomRow
-          name={item.name}
-          message={item.message}
-          profile_img={item.profile_img}
-          press={props.press}
-        />
-      )}
+      data={props.itemList}
+      renderItem={props.renderItem}
     />
   </View>
 );
