@@ -21,5 +21,41 @@ Auth.searchUser = (email, pw) => {
         })
     })
 }
+// 디바이스 토큰을 유저 테이블에서 가져오기
+Auth.getToken = (userId) => {
+    return new Promise((resolve, reject) => {
+        let sql = `SELECT device_token FROM users WHERE user_id = ?`;
+        conn.query(sql, userId, (err, row) => {
+            if(err){
+                reject(err);
+            } else {
+                console.log('device token : ', row[0]);
+                resolve(row[0]);
+            }
+        })
+    })
+}
+//DB에 새로운 유저 추가 
+Auth.addUser = (user) => {
+    return new Promise((resolve, reject) => {
+        let sql = `INSERT INTO users(email, nickname, password) VALUES(
+            '${user.email}', '${user.nickname}', '${Auth.hash(user.password)}'
+           );`;
+        
+        conn.query(`SELECT * FROM users WHERE email = '${user.email}'`)
+            .then(row => {
+                if(row == 0){
+                    conn.query(sql, (err, res) => {
+                        if(err) reject(err);
+                        else resolve(res[0]);
+                    });
+                } else {
+                    res.json({fail: '계정이 이미 존재함'});
+                }
+            }).catch(err => {
+                console.log(err);
+            })
+    })
+}
 
 module.exports = Auth;
