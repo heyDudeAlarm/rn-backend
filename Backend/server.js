@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const crypto = require('crypto');
 const app = express();
-dotenv.config();
+dotenv.config({
+  path: './.env'
+});
 
 const authRouter = require('./routes/auth');
 const alarmRouter = require('./routes/alarm');

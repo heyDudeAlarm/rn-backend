@@ -18,13 +18,11 @@ const client = new S3Client({
 module.exports.upload = (upload.single("file"), async (req, res, next) => {
     //녹음 파일
     const file = req.file;
-    //녹음 파일을 받는 유저
-    // const receivedUser = req.body.userID;
     //녹음 메세지
     const message = req.body.message;
     //녹음을 한 유저
-    const sendUser = req.params.id;
-
+    // const sendUser = req.params.id;
+    const sendUser = req.session.user.user_id;
     //AWS s3 버킷에 파일 업로드
     const upload = new Upload({
       client: client,
@@ -58,10 +56,13 @@ module.exports.upload = (upload.single("file"), async (req, res, next) => {
         res.json({ fail: err });
       });
 })
-
+//upload : 유저A
+//download : 유저 B (유저A의 파일 접근!)
+//=> req.query.filename "?filename=audio_유저A의ID"
 module.exports.download = async (req, res) => {
   const response = await client.send(new GetObjectCommand({
-    Bucket: bucketName,
-    Key: req.query.filename
+    Bucket: process.env.AWS_BUCKET,
+    Key: `audio/${req.query.filename}.mp3`
   }));
+  response.Body.pipe(res);
 }
