@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const conn = require('../database/config');
 const Auth = {};
-
+conn.getConnection();
 Auth.hash = (password) => {
     //createHash: 사용할 알고리즘(sha256, sha516)
     //update : 해싱할 데이터
@@ -11,14 +11,26 @@ Auth.hash = (password) => {
 
 Auth.searchUser = (email, pw) => {
     return new Promise((resolve, reject) => {
-        let sql = `SELECT * FROM users WHERE email ='${email}' AND password ='${Auth.hash(pw)}'`;
-        conn.query(sql, (err, row) => {
+        const hashed = Auth.hash(pw);
+        console.log(hashed)
+        let sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
+
+        conn.query(sql, [email, hashed])
+            .then(result => {
+                resolve(result);
+            })
+            .catch(err => {
+                reject(err);
+            })
+        /*
+        conn.query(sql, [email, hashed], (err, row) => {
+            console.log("from conn")
             if(err){
                 reject(err);
             } else {
                 resolve(row);
             }
-        })
+        })*/
     })
 }
 // 디바이스 토큰을 유저 테이블에서 가져오기
@@ -47,10 +59,10 @@ Auth.addUser = (user) => {
                 if(row == 0){
                     conn.query(sql, (err, res) => {
                         if(err) reject(err);
-                        else resolve(res[0]);
+                        else resolve(res);
                     });
                 } else {
-                    res.json({fail: '계정이 이미 존재함'});
+                    resolve({ result: "fail" })
                 }
             }).catch(err => {
                 console.log(err);

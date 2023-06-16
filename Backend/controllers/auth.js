@@ -14,8 +14,10 @@ module.exports.join = async (req, res, next) => {
             password: password,
             nickname: nickname,
         }
-        
+        console.log(userData);
         const result = await Auth.addUser(userData);
+
+        res.json(result);
     } catch (error) {
         throw error;
     }
@@ -28,9 +30,14 @@ module.exports.login = async (req, res, next) => {
         const inputEmail = req.body.email;
         const inputPW = req.body.password;
 
-        const user = await Auth.searchUser(inputEmail,inputPW);
-        res.json(user[0])
+        console.log("???");
+        const user = await Auth.searchUser(inputEmail, inputPW);
+        console.log(user);
+        req.session.user = user[0];
+        req.session.save();
+        res.json(user);
     } catch(err) {
+        console.log(err);
         throw err;
     }
 };
@@ -45,3 +52,15 @@ module.exports.getToken = async (req, res, next) => {
         
     }
 }
+
+//auth 컨트롤러에서 구현한 함수를 객체로 맵핑함
+module.exports.me = async (req, res, next) => {
+    const user = req.session.user;
+    console.log(user);
+    if(user) {
+        res.json(user);
+    } else {
+        res.status(404).send();
+    }
+    
+};
