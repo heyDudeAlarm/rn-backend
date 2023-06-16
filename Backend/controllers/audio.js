@@ -58,3 +58,10 @@ module.exports.upload = (upload.single("file"), async (req, res, next) => {
         res.json({ fail: err });
       });
 })
+
+module.exports.download = async (req, res) => {
+  const response = await client.send(new GetObjectCommand({
+    Bucket: bucketName,
+    Key: req.query.filename
+  }));
+}
