@@ -10,8 +10,8 @@ dotenv.config();
 const authRouter = require('./routes/auth');
 const alarmRouter = require('./routes/alarm');
 const uploadRouter = require('./routes/upload');
-const downloadRouter = require('./routes/download');
 const friendRouter = require('./routes/friend');
+const audioRouter = require('./routes/audio');
 
 const generateSecret = () => {
   return crypto.randomBytes(32).toString('hex');
@@ -31,7 +31,8 @@ app.use(session({
 
 app.use('/auth', authRouter);//로그인, 회원가입, 로그아웃
 app.use('/alarm', alarmRouter);
-app.use('/upload', uploadRouter);
+// app.use('/upload', uploadRouter);
+app.use('/audio', audioRouter);
 app.use('/friend', friendRouter); //친구
 
 app.listen(app.get('port'), () => {
