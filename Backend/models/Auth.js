@@ -12,7 +12,6 @@ Auth.hash = (password) => {
 Auth.searchUser = (email, pw) => {
     return new Promise((resolve, reject) => {
         const hashed = Auth.hash(pw);
-        console.log(hashed)
         let sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
 
         conn.query(sql, [email, hashed])
@@ -22,15 +21,6 @@ Auth.searchUser = (email, pw) => {
             .catch(err => {
                 reject(err);
             })
-        /*
-        conn.query(sql, [email, hashed], (err, row) => {
-            console.log("from conn")
-            if(err){
-                reject(err);
-            } else {
-                resolve(row);
-            }
-        })*/
     })
 }
 // 디바이스 토큰을 유저 테이블에서 가져오기

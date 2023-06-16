@@ -30,12 +30,10 @@ module.exports.login = async (req, res, next) => {
         const inputEmail = req.body.email;
         const inputPW = req.body.password;
 
-        console.log("???");
         const user = await Auth.searchUser(inputEmail, inputPW);
-        console.log(user);
         req.session.user = user[0];
         req.session.save();
-        res.json(user);
+        res.json(req.session.user);
     } catch(err) {
         console.log(err);
         throw err;
