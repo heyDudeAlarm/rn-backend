@@ -1,5 +1,5 @@
 const router = require('express').Router();
 
-router.post('/')
+router.get('/audio/:id', );
 
 module.exports = router;

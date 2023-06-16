@@ -18,7 +18,6 @@ const client = new S3Client({
 const upload = multer({ storage: multer.memoryStorage() });
 
 router.post("/audio/:id", upload.single("file"), async (req, res) => {
-
     //녹음 파일
     const file = req.file;
     //녹음 파일을 받는 유저
@@ -42,7 +41,6 @@ router.post("/audio/:id", upload.single("file"), async (req, res) => {
     upload
       .done()
       .then((res) => {
-        
         let uploadDate = new Date().toLocaleString();
 
         const data = {
@@ -60,5 +58,27 @@ router.post("/audio/:id", upload.single("file"), async (req, res) => {
         res.json({ fail: err });
       });
 });
+
+//1. 프로필 사진을 AWS s3에 업로드하기 (완료)
+//2. 이미지 객체 url을 DB profile 테이블에 저장하기
+router.post('/profile',upload.single('file'), async (req, res) => {
+    const file = req.file;
+    const userID = req.body.userID;
+
+    const upload = new Upload({
+        client: client,
+        params: {
+            Bucket: 'heydudebucket',
+            Key: `image_${userID}.png`,
+            Body: file.buffer,
+            ContentType: 'image/png',
+        },
+    });
+    upload.done();
+    // profile_img : 버킷 폴더 이름
+    var img_url = `https://${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/profile_img/${upload.params.Key}`;
+
+    res.status(200).send({ message: "ok", url: img_url })
+})
 
 module.exports = router;

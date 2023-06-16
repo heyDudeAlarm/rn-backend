@@ -8,7 +8,7 @@ const { Upload } = require('@aws-sdk/lib-storage');
 const upload = multer({storage: multer.memoryStorage()});
 //1. 프로필 사진을 AWS s3에 업로드하기 (완료)
 //2. 이미지 객체 url을 DB profile 테이블에 저장하기
-router.post('/upload',upload.single('file'), async (req, res) => {
+router.post('/profile',upload.single('file'), async (req, res) => {
     const file = req.file;
     const userID = req.body.userID;
 
