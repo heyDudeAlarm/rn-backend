@@ -48,6 +48,17 @@ Auth.getToken = (userId) => {
             .catch(err => reject(err))
     })
 }
+
+//유저 info 가져오기
+Auth.getInfo = (userId, data) => {
+    return new Promise((resolve, reject) => {
+        let sql = 'SELECT ? FROM users WHERE user_id = ?';
+        conn.query(sql, [data, userId])
+            .then(row => resolve(row))
+            .catch(err => reject(err))
+    })
+}
+
 //DB에 새로운 유저 추가 
 Auth.addUser = (user) => {
     return new Promise((resolve, reject) => {
