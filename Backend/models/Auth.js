@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const path = require('path');
 const conn = require('../database/config');
 const Auth = {};
 conn.getConnection();
@@ -23,18 +24,28 @@ Auth.searchUser = (email, pw) => {
             })
     })
 }
+//디바이스 토큰을 유저 DB에 저장하기
+Auth.setDeviceToken = (token, userId) => {
+    return new Promise((resolve, reject) => {
+        let sql = `UPDATE users SET device_token = ? WHERE user_id = ?`;
+        conn.query(sql, [token, userId])
+            .then(res => {
+                console.log('디바이스 토큰 저장 완료!')
+                resolve(res)
+            }).catch(err => {
+                console.log('디바이스 토큰 저장 실패 ㅠㅠ')
+                reject(err)
+            })
+    })
+}
+
 // 디바이스 토큰을 유저 테이블에서 가져오기
 Auth.getToken = (userId) => {
     return new Promise((resolve, reject) => {
         let sql = `SELECT device_token FROM users WHERE user_id = ?`;
-        conn.query(sql, userId, (err, row) => {
-            if(err){
-                reject(err);
-            } else {
-                console.log('device token : ', row[0]);
-                resolve(row[0]);
-            }
-        })
+        conn.query(sql, userId)
+            .then(row => resolve(row))
+            .catch(err => reject(err))
     })
 }
 //DB에 새로운 유저 추가 

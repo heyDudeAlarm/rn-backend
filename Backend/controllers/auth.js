@@ -26,14 +26,26 @@ module.exports.join = async (req, res, next) => {
 //auth 컨트롤러에서 구현한 함수를 객체로 맵핑함
 module.exports.login = async (req, res, next) => {
     try {
-        //이제 이 부분을 React Native의 body를 가져오면 됨
+        //요청 바디 : 이메일, 패스워드 
+        //
         const inputEmail = req.body.email;
         const inputPW = req.body.password;
-
+        const token = 'qwergjslfdjksdgzxadsgag'; //클라이언트에서 이제 받아오자!
+        // const token = req.header('device-token');
         const user = await Auth.searchUser(inputEmail, inputPW);
-        req.session.user = user[0];
-        req.session.save();
-        res.json(req.session.user);
+
+        if(user == 0){ //로그인 실패
+            res.end("fail")
+        } else { //로그인 성공
+            //1. 세션에 유저 정보 저장
+            req.session.user = user[0];
+            req.session.save();
+            res.json(req.session.user);
+
+            //2. 디바이스 토큰 유저 DB에 저장
+            const isSavedToken = await Auth.setDeviceToken(token, req.session.user.user_id);
+            console.log(isSavedToken);
+        }
     } catch(err) {
         console.log(err);
         throw err;

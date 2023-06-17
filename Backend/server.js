@@ -11,7 +11,7 @@ dotenv.config({
 
 const authRouter = require('./routes/auth');
 const alarmRouter = require('./routes/alarm');
-const uploadRouter = require('./routes/upload');
+// const uploadRouter = require('./routes/upload');
 const friendRouter = require('./routes/friend');
 const audioRouter = require('./routes/audio');
 
