@@ -30,8 +30,8 @@ module.exports.login = async (req, res, next) => {
         //
         const inputEmail = req.body.email;
         const inputPW = req.body.password;
-        const token = 'qwergjslfdjksdgzxadsgag'; //클라이언트에서 이제 받아오자!
-        // const token = req.header('device-token');
+        // const token = 'qwergjslfdjksdgzxadsgag'; //클라이언트에서 이제 받아오자!
+        const token = req.query.device_token;
         const user = await Auth.searchUser(inputEmail, inputPW);
 
         if(user == 0){ //로그인 실패
@@ -40,7 +40,7 @@ module.exports.login = async (req, res, next) => {
             //1. 세션에 유저 정보 저장
             req.session.user = user[0];
             req.session.save();
-            res.json(req.session.user);
+            res.json({user: req.session.user});
 
             //2. 디바이스 토큰 유저 DB에 저장
             const isSavedToken = await Auth.setDeviceToken(token, req.session.user.user_id);
@@ -54,12 +54,11 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.getToken = async (req, res, next) => {
     try {
-        const userId = req.params.id;
-        const token = await Auth.getToken(userId);
-
-        res.end(token);
+        const user = await req.session.user.user_id;
+        const token = await Auth.getToken(user);
+        res.end(req.session.user.device_token);
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
