@@ -36,14 +36,12 @@ export default function RecordListScreen(props) {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate("Record")}>
       <CustomRow
           name={item.name}
           message={item.message}
           profile_img={item.profile_img}
           onPress={props.toRecord}
       />
-    </TouchableOpacity>
   );
 
   return (
@@ -69,15 +67,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    backgroundColor: "#fff",
   },
   header: {
-    flex: 2.5,
+    flex: 1.5,
     justifyContent: "flex-end",
-    padding: 18,
+    paddingLeft: 18,
     marginBottom: 5,
   },
   title: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "bold",
   },
   explain: {

@@ -1,11 +1,23 @@
-import React from "react";
+import { useState } from "react";
 import { Button, View, Text, Image, StyleSheet, Dimensions, ImageBackground } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function MyPage({ navigation }, props) {
+function MyPage(props) {
+  const [userinfo, setUserinfo] = useState(null);
+
+  function getStorage(){
+    AsyncStorage.getItem('session', (err, result) => {
+      setUserinfo(JSON.parse(result));
+      console.log(userinfo);
+    });
+    return userinfo.email;
+  }
+  
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -13,9 +25,9 @@ function MyPage({ navigation }, props) {
       <Ionicons style={styles.settings} name="settings-outline" size={24} color="white" />
         <View style={styles.contents}>
           <Image style={styles.profile} />
-          <Text style={styles.username}>김하진</Text>
-          <Text style={styles.email}>w2128@e-mirim.hs.kr</Text>
-          <Text style={styles.stateMess}>마이페이지 입니다~~~</Text>
+          <Text style={styles.username}>{getStorage}</Text>
+          <Text style={styles.email}></Text>
+          {/* <Text style={styles.stateMess}>마이페이지 입니다~~~</Text> */}
         </View>
       </ImageBackground> 
     </View>

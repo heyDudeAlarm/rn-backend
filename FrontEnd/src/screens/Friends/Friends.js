@@ -47,7 +47,7 @@ export default function Friends(props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.explain}>친구 목록</Text>
+        <Text style={styles.title}>친구 목록</Text>
       </View>
       <View style={styles.alarms}>
         <FriendsList 
@@ -64,11 +64,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    backgroundColor: '#fff',
   },
   header: {
     flex: 1.5,
-    justifyContent: "flex-end",
-    padding: 18,
+    justifyContent: "center",
+    paddingLeft: 18,
     marginBottom: 5,
   },
   title: {

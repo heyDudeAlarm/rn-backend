@@ -2,7 +2,7 @@ import React from "react";
 import { createAppContainer } from 'react-navigation';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Button } from "react-native";
+import { LogBox } from "react-native";
 import { StyleSheet, Dimensions } from "react-native";
 import Toast from 'react-native-toast-message';
 import Login from "./src/screens/Login/Login";
@@ -16,28 +16,22 @@ import AddAlarm from "./src/screens/AddAlarm";
 import Profile from "./src/screens/Profile";
 import AskRecord from "./src/screens/Friends/AskRecord";
 import SendBtn from "./src/components/Button/SendBtn";
-import Notification from "./src/screens/Notification"
+import NotificationScreen from "./src/screens/Notification";
+import ExpoNotiFCM from "./src/screens/ExpoNotiFCM"
+import FirebaseNoti from "./src/screens/FirebaseNoti";
+
+// send token to your server
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const SCREEN_WIDTH = Dimensions.get("window").width; // 스크린가로사이즈를 가져옴
 const Stack = createStackNavigator();
 
-const config = {
-  animation: 'spring',
-  config: {
-    stiffness: 1000,
-    damping: 500,
-    mass: 3,
-    overshootClamping: true,
-    restDisplacementThreshold: 0.01,
-    restSpeedThreshold: 0.01,
-  },
-};
 
 function WholeStack() {
-
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="ExpoNotiFCM"
       options={{ headerShown: false }}
       screenOptions={{ 
         headerTitleAlign: "center",
@@ -59,7 +53,9 @@ function WholeStack() {
       <Stack.Screen name="AddAlarm" component={AddAlarm} />
       <Stack.Screen name="Profile" component={Profile} /> 
       <Stack.Screen name="AskRecord" options={{title: '모닝콜 요청'}} component={AskRecord} /> 
-      <Stack.Screen name="Notification" component={Notification} /> 
+      <Stack.Screen name="NotificationScreen" component={NotificationScreen} /> 
+      <Stack.Screen name="ExpoNotiFCM" component={ExpoNotiFCM} /> 
+      <Stack.Screen name="FirebaseNoti" component={FirebaseNoti} />
     </Stack.Navigator>
   );
 }

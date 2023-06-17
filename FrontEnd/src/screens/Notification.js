@@ -20,7 +20,7 @@ const Notification = () => {
       const content = {
         title: '알람',
         body: '알람이 울립니다!',
-        sound: 'default',
+        sound: 'test.m4a',
       };
 
       const trigger = new Date(selectedTime);
@@ -49,6 +49,6 @@ const Notification = () => {
       )}
     </View>
   );
-};
+}
 
 export default Notification;
