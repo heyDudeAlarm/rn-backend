@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: windowWidth - 48,
-    marginHorizontal: 12,
+    marginHorizontal: 10,
     height: 85,
     flexDirection: "row",
     alignItems: "center",

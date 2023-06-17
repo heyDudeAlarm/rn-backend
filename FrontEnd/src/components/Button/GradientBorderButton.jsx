@@ -20,8 +20,8 @@ const GradientBorderButton = ({ onPress, colors, text, textStyle }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 300,
-    height: 58,
+    width: 305,
+    height: 60,
     textAlign: "center",
     borderRadius: 10,
     alignItems: "center",

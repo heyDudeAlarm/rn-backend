@@ -31,7 +31,8 @@ const LoginEvent = () => {
       axios
       .post(`http://10.0.2.2:8082/auth/login`, JSON.stringify(formdata), {
         headers: {
-          "Content-Type": `application/json`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
         }
       })
       .then((res) => {
@@ -40,10 +41,10 @@ const LoginEvent = () => {
           ToastAndroid.show("로그인에 실패하였습니다.", ToastAndroid.SHORT)
         }else{ //로그인 성공
           ToastAndroid.show("로그인 성공!", ToastAndroid.SHORT)
-          AsyncStorage.setItem('session', email); // session에 저장
-          AsyncStorage.getItem('nickname', (err, result) => {
-            console.log(result); // User1 출력
-          });
+          AsyncStorage.setItem('session', JSON.stringify({
+            email : res.data.email,
+            nickname : res.data.nickname,
+          })); // session에 저장
           navigation.replace("TabNavigation", {"userdata" : res["data"]}); //tabnavigation으로 이동
         }
       })

@@ -36,6 +36,7 @@ export default function AddAlarm({ navigation }) {
     <View style={styles.container}>
       {/* <Image source={require("../../assets/mypageBack.png")} /> */}
       <ListContainer>
+        <Text>테스트를 위해 알람은 5초 뒤에 울리는 것만 가능합니다!!</Text>
         <ListView onPress={()=>{setVisible(!visible)}} gap={40}>
           <Text>시간</Text>
           <Text>오전 2시 47분</Text>
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     paddingLeft: 18,
     backgroundColor: "#fff",
-    // marginRight: 25,
+    justifyContent: "center",
   },
   header: {
     flex: 1.5,
