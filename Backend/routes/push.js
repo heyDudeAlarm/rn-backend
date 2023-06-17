@@ -10,15 +10,20 @@ admin.initializeApp({
 });
 
 //녹음 요청 버튼을 클릭 했을 때
-router.post('/req_record/:id', async (req, res, next) => {
-    const userId = req.body;
-    let deviceToken = await Auth.getToken(userId);
+router.post('/req_record', async (req, res, next) => {
+    // /req_record?receiver=3
+    // const userId = req.query.sender;
+    const receiver = req.query.receiver;
+    const sender = req.session.user.user_id;
 
+    let deviceToken = await Auth.getToken(receiver);
+    //푸시알림을 보내는 사람
+    let user = await Auth.getInfo(sender, "nickname");
     let message = {
         token: deviceToken,
         data: { 
-            title: "푸시알림제목",
-            body: "푸시알림내용입니다.",
+            title: "HeyDude",
+            body: `${user}님이 회원님에게 알람 사운드 녹음 요청했습니다!`,
             style: '',
             user: '',
         }
