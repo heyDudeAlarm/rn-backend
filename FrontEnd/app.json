@@ -21,10 +21,11 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-        "googleServicesFile": "./google-services.json"
+        "backgroundColor": "#ffffff"
+        
       },
       "package": "com.fastcat2.heydude",
+      "versionCode": 1,
       "permissions": [
         "RECORD_AUDIO"
       ]
@@ -41,10 +42,10 @@
       [
         "expo-notifications",
         {
-          "icon": "./local/assets/notification-icon.png",
+          "icon": "./assets/icon.png",
           "color": "#ffffff",
           "sounds": [
-            "./local/assets/test.m4a"
+            "./assets/test.m4a"
           ]
         }
       ]
