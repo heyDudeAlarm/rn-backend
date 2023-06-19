@@ -31,7 +31,7 @@ const Stack = createStackNavigator();
 function WholeStack() {
   return (
     <Stack.Navigator
-      initialRouteName="ExpoNotiFCM"
+      initialRouteName="TabNavigation"
       options={{ headerShown: false }}
       screenOptions={{ 
         headerTitleAlign: "center",
