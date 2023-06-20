@@ -21,7 +21,7 @@ export default function AskRecord({ navigation }) {
             <TextInput style={styles.content} placeholder="30자 이내로 입력하세요" maxLength={30}/>
         </View>
         <View style={styles.bottom}>
-            <SendBtn />
+            <SendBtn onPress={()=>{}}/>
         </View>
     </View>
   );

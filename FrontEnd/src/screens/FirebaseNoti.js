@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { getMessaging, getToken, onMessage } from "@firebase/messaging";
 import { initializeApp } from "firebase/app";
 import { registerForPushNotificationsAsync } from 'expo-notifications';
 import Constants from 'expo-constants';
@@ -19,7 +19,7 @@ import Constants from 'expo-constants';
 // const messaging = getMessaging();
 
 // //토큰값 얻기
-// const getTokenValue = () =>{
+// const getTokenValue = () => {
 //   getToken(messaging, {
 //     vapidKey:"BBBjxcsG4RGxNlD_HhEkj6HISi5z4PhiBuDnfkq6E3RRcNvOtUgGkQPw9x1awOl_fhryTRvtINRkHjs_b01Z0dE",
 //   })
@@ -46,10 +46,11 @@ import Constants from 'expo-constants';
 //   });
 // }
 
+
 export default function FirebaseNoti(){
     return(
         <View>
-            <Button>눌러봐</Button>
+            <Button title="눌러봐" onPress={getToken}/>
         </View>
     )
 }

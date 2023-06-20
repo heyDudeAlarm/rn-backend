@@ -33,12 +33,12 @@ function WholeStack() {
     <Stack.Navigator
       initialRouteName="TabNavigation"
       options={{ headerShown: false }}
-      screenOptions={{ 
+      screenOptions={{
         headerTitleAlign: "center",
         gestureEnabled: true, // 제스처 기능 활성화
         gestureDirection: 'vertical', // 수직 방향 스와이프만 허용
       }}
-    > 
+    >
       <Stack.Screen
         name="TabNavigation"
         component={TabNavigation}

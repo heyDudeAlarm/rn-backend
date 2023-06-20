@@ -10,26 +10,53 @@ import {
   ToastAndroid,
 } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Toast from "react-native-toast-message"
 import axios from "axios";
 import GradientButton from "../../components/Button/GradientButton";
 import GradientBorderButton from "../../components/Button/GradientBorderButton";
+import * as Notifications from 'expo-notifications';
 
 export default function Login({ navigation }) {
   // node data가져오기
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
+  async function registerForPushNotificationsAsync() {
+    let token;
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+  
+    if (Platform.OS === 'android') {
+      Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
+      });
+    }
+  
+    return token;
+  }
+
 const LoginEvent = () => {
+    const token = registerForPushNotificationsAsync();
     const formdata = {
       email : email.trim(),
-      password : password
+      password : password,
     }
     if(!email || !password){
       ToastAndroid.show("데이터를 입력하세요", ToastAndroid.SHORT)
     }else{
       axios
-      .post(`http://10.0.2.2:8082/auth/login`, JSON.stringify(formdata), {
+      .post(`http://10.0.0.2:8082/auth/login?device_token=20`, JSON.stringify(formdata), {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -40,6 +67,7 @@ const LoginEvent = () => {
         if(res.data["fail"]){ //로그인 실패
           ToastAndroid.show("로그인에 실패하였습니다.", ToastAndroid.SHORT)
         }else{ //로그인 성공
+          console.log(token);
           ToastAndroid.show("로그인 성공!", ToastAndroid.SHORT)
           AsyncStorage.setItem('session', JSON.stringify({
             email : res.data.email,

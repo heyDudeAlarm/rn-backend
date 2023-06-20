@@ -21,8 +21,8 @@ module.exports.upload = (upload.single("file"), async (req, res, next) => {
     //녹음 메세지
     const message = req.body.message;
     //녹음을 한 유저
-    // const sendUser = req.params.id;
-    const sendUser = req.session.user.user_id;
+    const sendUser = req.params.id;
+    // const sendUser = req.session.user.user_id;
     //AWS s3 버킷에 파일 업로드
     const upload = new Upload({
       client: client,

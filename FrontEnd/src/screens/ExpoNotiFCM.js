@@ -7,7 +7,7 @@ import * as Notifications from 'expo-notifications';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
@@ -100,7 +100,11 @@ export default function NotiFCM() {
       <Button
         title="Press to Send Notification"
         onPress={async () => {
-          await sendPushNotification(expoPushToken);
+          // await sendPushNotification('ExponentPushToken[CfW1MtMfwFRtPtY6LHFbhH]');
+          await sendPushNotification('ExponentPushToken[XnZFYAACsvGCpvIJoR6s7g]');
+          // ExponentPushToken[CfW1MtMfwFRtPtY6LHFbhH] -- 진이 ios
+          // ExponentPushToken[XnZFYAACsvGCpvIJoR6s7g]
+          // ExponentPushToken[PP2Q0gJ9KQzyVoZEQw24du] -- 내 휴대폰
         }}
       />
     </View>

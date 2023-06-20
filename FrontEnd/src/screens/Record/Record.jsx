@@ -23,7 +23,6 @@ export default function Record({navigation}){
 
 async function uploadAudio(){
   const formData = new FormData();
-  // formData.append('file', convertFileToBlob(uri), 'file.mp3');
   formData.append('file', {
     uri: uri,
     type: 'audio/x-m4a', // m4a 오디오 파일의 MIME 타입
@@ -38,13 +37,15 @@ async function uploadAudio(){
 
   axios({
     method: "post",
-    // url: `http://10.0.2.2:8082/upload/audio/${userID}`,
-    // url: `http://127.0.0.1:8082/upload/audio/${userID}`,
-    url: `http://10.96.123.85:8082/upload/audio/${userID}`,
+    // url: `http://10.0.2.2:8082/audio/upload/${userID}`,
+    // url: `http://127.0.0.1:8082/audio/upload`,
+    // url: `http://10.96.123.85:8082/audio/upload`,
+    // url: `http://10.96.123.85:8082/audio/upload/${userID}`,
+    // url: `http://localhost:8082/audio/upload/${userID}`,
     mode: "cors",
     headers: {
       'Content-Type': 'multipart/form-data',
-      // 'Accept': 'application/json'
+      'Accept': 'application/json'
     },
     data: formData,
   })
@@ -104,6 +105,28 @@ async function stopRecording() {
     }
   };
 
+
+  async function downloadAudio(){
+    const filename='audio_4'
+    axios({
+      method: "post",
+      // url: `http://localhost:8082/audio/download?filename=${filename}`,
+      url: `http://10.0.0.2:8082/audio/download?filename=audio_4`,
+      mode: "cors",
+      headers: {
+        'Content-Type': 'audio/mp3',
+        // 'Accept': 'application/json'
+      },
+    })
+    .then(res => {
+      ToastAndroid.show("오디오 파일 다운로드 ㄱ", ToastAndroid.SHORT)
+      console.log(res);
+    }).catch(err => {
+      ToastAndroid.show("실패하였습니다", ToastAndroid.SHORT)
+      console.log(err);
+    })
+  }
+
   function getDurationFormatted(millis) { //녹음시간 구하기
     const minutes = millis / 1000 / 60;
     const minutesDisplay = Math.floor(minutes);
@@ -122,6 +145,7 @@ async function stopRecording() {
       <Button title="오디오 upload" onPress={uploadAudio} />
       {uri && <Button title="녹음 재생" onPress={playRecording} />}
       {uri && <Text>녹음시간: {duration}</Text>}
+      <Button title="오디오 download" onPress={downloadAudio} />
     </View>
   );
 };
