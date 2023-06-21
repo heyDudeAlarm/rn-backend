@@ -47,7 +47,7 @@ export default function RecordListScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>모닝콜 요청</Text>
+        <Text style={styles.title}>나에게온 모닝콜 요청</Text>
         <Text style={{ color: "#6D61FF" }}>{getData().length} Calls</Text>
         <Text style={styles.explain}>
           모닝콜을 보내고 싶은 친구를 선택해주세요

@@ -1,6 +1,7 @@
 {
   "build": {
-    "preview": {
+    "development": {
+      "channel" : "development",
       "android": {
         "buildType": "apk"
       }
@@ -13,6 +14,14 @@
     "preview3": {
       "developmentClient": true
     },
-    "production": {}
+    "production": {
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "serviceAccountKeyPath":"./reactnativeheydude-ada915d63777.json"
+      }
+    }
   }
 }

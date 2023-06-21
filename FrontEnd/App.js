@@ -19,6 +19,7 @@ import SendBtn from "./src/components/Button/SendBtn";
 import NotificationScreen from "./src/screens/Notification";
 import ExpoNotiFCM from "./src/screens/ExpoNotiFCM"
 import FirebaseNoti from "./src/screens/FirebaseNoti";
+import MorningCall from "./src/screens/Alarm";
 
 // send token to your server
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
@@ -31,7 +32,7 @@ const Stack = createStackNavigator();
 function WholeStack() {
   return (
     <Stack.Navigator
-      initialRouteName="TabNavigation"
+      initialRouteName="ExpoNotiFCM"
       options={{ headerShown: false }}
       screenOptions={{
         headerTitleAlign: "center",
@@ -56,6 +57,7 @@ function WholeStack() {
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} /> 
       <Stack.Screen name="ExpoNotiFCM" component={ExpoNotiFCM} /> 
       <Stack.Screen name="FirebaseNoti" component={FirebaseNoti} />
+      <Stack.Screen name="MorningCall" component={MorningCall} />
     </Stack.Navigator>
   );
 }

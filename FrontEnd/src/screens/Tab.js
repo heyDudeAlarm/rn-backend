@@ -11,6 +11,7 @@ import RecordListScreen from "./Record/RecordListScreen";
 import Profile from "../screens/Profile";
 import Friends from "./Friends/Friends";
 import AddAlarm from "./AddAlarm";
+import MorningCall from "../screens/MorningCall";
 // import * as Notifications from 'expo-notifications';
 // const token = (await Notifications.getDevicePushTokenAsync()).data;
 
@@ -42,9 +43,10 @@ const TabNavigation = ({ navigation, route }) => {
         }}
       />
       <Tab.Screen
-        name="Record"
+        name="MorningCall"
         // component={RecordListScreen}
-        children={()=><RecordListScreen toRecord={()=>{navigation.navigate("Record")}}/>}
+        // children={()=><RecordListScreen toRecord={()=>{navigation.navigate("Record")}}/>}
+        component={MorningCall}
         options={{
           tabBarIcon: (props) =>
             TabIcon({ ...props, name: "microphone-outline" }),

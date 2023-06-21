@@ -18,17 +18,17 @@ async function sendPushNotification(expoPushToken) {
   const message = {
     to: expoPushToken,
     sound: 'default',
-    title: 'Original Title',
-    body: 'And here is the body!',
-    data: { someData: 'goes here' },
+    title: '알람이 도착했어요!',
+    body: '친구1님이 보낸 알람입니다.',
+    data: { someData: 'alarm1.mp3' },
   };
 
   await fetch('https://exp.host/--/api/v2/push/send', {
     method: 'POST',
     headers: {
-      Accept: 'notiFcmlication/json',
+      Accept: 'application/json',
       'Accept-encoding': 'gzip, deflate',
-      'Content-Type': 'notiFcmlication/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(message),
   });
@@ -65,7 +65,7 @@ async function registerForPushNotificationsAsync() {
   return token;
 }
 
-export default function NotiFCM() {
+export default function App() {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
@@ -80,7 +80,6 @@ export default function NotiFCM() {
 
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
-      console.log(expoPushToken);
     });
 
     return () => {
@@ -100,12 +99,13 @@ export default function NotiFCM() {
       <Button
         title="Press to Send Notification"
         onPress={async () => {
-          // await sendPushNotification('ExponentPushToken[CfW1MtMfwFRtPtY6LHFbhH]');
-          await sendPushNotification('ExponentPushToken[XnZFYAACsvGCpvIJoR6s7g]');
-          // ExponentPushToken[CfW1MtMfwFRtPtY6LHFbhH] -- 진이 ios
-          // ExponentPushToken[XnZFYAACsvGCpvIJoR6s7g]
-          // ExponentPushToken[PP2Q0gJ9KQzyVoZEQw24du] -- 내 휴대폰
+          await sendPushNotification('ExponentPushToken[2zU2WrCOFkCvQfxXnSTX9k]');
         }}
+      // ExponentPushToken[2zU2WrCOFkCvQfxXnSTX9k]
+      // ExponentPushToken[PP2Q0gJ9KQzyVoZEQw24du] -- 내 휴대폰
+      // await sendPushNotification('ExponentPushToken[CfW1MtMfwFRtPtY6LHFbhH]');
+      // ExponentPushToken[XnZFYAACsvGCpvIJoR6s7g] // -- 내꺼
+      // ExponentPushToken[2zU2WrCOFkCvQfxXnSTX9k] -- 진이
       />
     </View>
   );

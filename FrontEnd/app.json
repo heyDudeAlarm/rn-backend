@@ -22,13 +22,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-        
       },
-      "package": "com.fastcat2.heydude",
       "versionCode": 1,
-      "permissions": [
-        "RECORD_AUDIO"
-      ]
+      "package": "com.fastcat2.heydude",
+      "permissions" : ["CAMERA", "NOTIFICATIONS", "RECORD_AUDIO"],
+      "useNextNotificationsApi": true,
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
