@@ -19,8 +19,11 @@ const generateSecret = () => {
   return crypto.randomBytes(32).toString('hex');
 };
 
-app.set('port', process.env.port);
+app.set('port', process.env.PORT);
 
+app.get("/hello", (req, res) => {
+	res.send("Hello");
+})
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cors());

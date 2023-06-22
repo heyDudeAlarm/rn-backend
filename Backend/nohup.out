@@ -1,0 +1,93 @@
+
+> start
+> node server.js
+
+{
+  SHELL: '/bin/bash',
+  npm_command: 'start',
+  npm_config_userconfig: '/home/ec2-user/.npmrc',
+  npm_config_cache: '/home/ec2-user/.npm',
+  HISTCONTROL: 'ignoredups',
+  SYSTEMD_COLORS: 'false',
+  HOSTNAME: 'ip-172-31-34-38.eu-north-1.compute.internal',
+  HISTSIZE: '1000',
+  NODE: '/usr/bin/node',
+  COLOR: '0',
+  npm_config_local_prefix: '/home/ec2-user/rn-backend/Backend',
+  npm_config_globalconfig: '/usr/local/etc/npmrc',
+  EDITOR: 'vi',
+  PWD: '/home/ec2-user/rn-backend/Backend',
+  LOGNAME: 'ec2-user',
+  XDG_SESSION_TYPE: 'tty',
+  npm_config_init_module: '/home/ec2-user/.npm-init.js',
+  _: '/usr/bin/node',
+  MOTD_SHOWN: 'pam',
+  HOME: '/home/ec2-user',
+  LANG: 'C.UTF-8',
+  LS_COLORS: 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.m4a=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.oga=01;36:*.opus=01;36:*.spx=01;36:*.xspf=01;36:',
+  SSH_CONNECTION: '119.196.25.94 59448 172.31.34.38 22',
+  INIT_CWD: '/home/ec2-user/rn-backend/Backend',
+  npm_lifecycle_script: 'node server.js',
+  XDG_SESSION_CLASS: 'user',
+  SELINUX_ROLE_REQUESTED: '',
+  TERM: 'xterm-256color',
+  npm_config_prefix: '/usr/local',
+  LESSOPEN: '||/usr/bin/lesspipe.sh %s',
+  USER: 'ec2-user',
+  SELINUX_USE_CURRENT_RANGE: '',
+  npm_lifecycle_event: 'start',
+  SHLVL: '0',
+  XDG_SESSION_ID: '5',
+  npm_config_user_agent: 'npm/8.19.2 node/v18.12.1 linux x64 workspaces/false',
+  npm_execpath: '/usr/lib/node_modules/npm/bin/npm-cli.js',
+  XDG_RUNTIME_DIR: '/run/user/1000',
+  S_COLORS: 'auto',
+  SSH_CLIENT: '119.196.25.94 59448 22',
+  npm_package_json: '/home/ec2-user/rn-backend/Backend/package.json',
+  which_declare: 'declare -f',
+  npm_config_noproxy: '',
+  PATH: '/home/ec2-user/rn-backend/Backend/node_modules/.bin:/home/ec2-user/rn-backend/node_modules/.bin:/home/ec2-user/node_modules/.bin:/home/node_modules/.bin:/node_modules/.bin:/usr/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/home/ec2-user/.local/bin:/home/ec2-user/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin',
+  npm_config_metrics_registry: 'https://registry.npmjs.org/',
+  SELINUX_LEVEL_REQUESTED: '',
+  npm_config_node_gyp: '/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js',
+  DBUS_SESSION_BUS_ADDRESS: 'unix:path=/run/user/1000/bus',
+  npm_config_python: '/usr/bin/python3',
+  npm_config_global_prefix: '/usr/local',
+  MAIL: '/var/spool/mail/ec2-user',
+  SSH_TTY: '/dev/pts/0',
+  npm_node_execpath: '/usr/bin/node',
+  OLDPWD: '/home/ec2-user/rn-backend',
+  'BASH_FUNC_which%%': '() {  ( alias;\n' +
+    ' eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot "$@"\n' +
+    '}',
+  HOST: 'heydude-db.cxbfr9x61xea.eu-north-1.rds.amazonaws.com',
+  PASSWORD: 'database',
+  PORT: '8082',
+  DATABASE: 'heydude',
+  AWS_BUCKET: 'heydudebucket',
+  AWS_REGION: 'ap-northeast-2',
+  AWS_ACCESS_KEY_ID: 'AKIA56THX5PTV6YDGWGW',
+  AWS_SECRET_ACCESS_KEY: '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'
+}
+8082 번 포트에서 대기중
+/home/ec2-user/rn-backend/Backend/node_modules/mariadb/lib/misc/errors.js:57
+  return new SqlError(msg, sql, fatal, info, sqlState, errno, additionalStack, addHeader);
+         ^
+
+SqlError: (conn=-1, no: 45028, SQLState: HY000) retrieve connection from pool timeout after 10002ms
+    (pool connections: active=0 idle=0 limit=5)
+    connection error: Error during pool initialization: (conn=16512, no: 1045, SQLState: 28000) Access denied for user 'ec2-user'@'172.31.34.38' (using password: YES)
+    at module.exports.createError (/home/ec2-user/rn-backend/Backend/node_modules/mariadb/lib/misc/errors.js:57:10)
+    at Pool._requestTimeoutHandler (/home/ec2-user/rn-backend/Backend/node_modules/mariadb/lib/pool.js:344:26)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7) {
+  text: 'retrieve connection from pool timeout after 10002ms\n' +
+    '    (pool connections: active=0 idle=0 limit=5)',
+  sql: null,
+  fatal: false,
+  errno: 45028,
+  sqlState: 'HY000',
+  code: 'ER_GET_CONNECTION_TIMEOUT'
+}
+
+Node.js v18.12.1

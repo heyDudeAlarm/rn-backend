@@ -1,4 +1,4 @@
-const Alarm = require('../models/Alarm');
+const Alarm = require('../models/alarm');
 
 module.exports.showAlarm = async (req, res) => {
     try {
