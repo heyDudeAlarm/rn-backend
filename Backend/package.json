@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "serve": "nodemon server.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.348.0",
