@@ -4,10 +4,10 @@ require('dotenv').config({
 });
 
 const pool = mariadb.createPool({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
+    host: "heydude-db.cxbfr9x61xea.eu-north-1.rds.amazonaws.com",
+    user: "root",
+    password: "database",
+    database: "heydude",
     connectionLimit: 5
 });
 
