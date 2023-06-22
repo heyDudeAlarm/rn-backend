@@ -31,7 +31,7 @@ module.exports.login = async (req, res, next) => {
         const inputEmail = req.body.email;
         const inputPW = req.body.password;
         // const token = 'qwergjslfdjksdgzxadsgag'; //클라이언트에서 이제 받아오자!
-        const token = req.query.device_token;
+       
         const user = await Auth.searchUser(inputEmail, inputPW);
 
         if(user == 0){ //로그인 실패
@@ -42,9 +42,9 @@ module.exports.login = async (req, res, next) => {
             req.session.save();
             res.json({user: req.session.user});
 
-            //2. 디바이스 토큰 유저 DB에 저장
-            const isSavedToken = await Auth.setDeviceToken(token, req.session.user.user_id);
-            console.log(isSavedToken);
+
+
+
         }
     } catch(err) {
         console.log(err);

@@ -4,14 +4,14 @@ const Friend = {};
 
 Friend.getFriendList = (userId) => {
     return new Promise((resolve, reject) => {
-        let JOIN = 'JOIN users ON friend_list.friend = users.user_id';
-        let WHERE = `WHERE friend_list.user = ${userId}`;
 
-        const sql = `SELECT friend_list.friend "user_id", users.nickname
-        FROM friend_list
-        JOIN users ON friend_list.friend = users.user_id
-        WHERE friend_list.user = ${userId};`;
-        connection.query(sql)
+
+
+
+
+
+let sql = 'SELECT users.* FROM users JOIN friend_list ON users.user_id = friend_list.friend WHERE friend_list.user = ?';
+        connection.query(sql,[userId])
             .then(rows => resolve(rows))
             .catch(err => reject(err))
     })
