@@ -91,3 +91,30 @@ SqlError: (conn=-1, no: 45028, SQLState: HY000) retrieve connection from pool ti
 }
 
 Node.js v18.12.1
+8082 번 포트에서 대기중
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8082
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Function.listen (/home/ec2-user/rn-backend/Backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/home/ec2-user/rn-backend/Backend/server.js:43:5)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1512:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 8082
+}
+
+Node.js v18.12.1
