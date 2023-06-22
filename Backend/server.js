@@ -35,7 +35,7 @@ app.use('/auth', authRouter);//로그인, 회원가입, 로그아웃
 app.use('/alarm', alarmRouter);
 // app.use('/upload', uploadRouter);
 app.use('/audio', audioRouter);
-app.use('/friend', friendRouter); //친구
+app.use('/friend', friendRouter); //친구 
 
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기중');
